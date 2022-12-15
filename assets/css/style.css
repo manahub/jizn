@@ -1,0 +1,223 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Noto Sans JP", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", YuGothic, "メイリオ", Meiryo, sans-serif;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    height: 100svh;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width: 751px) {
+    .wrap {
+        width: 1260px;
+        padding: 0 24px;
+        margin: auto;
+    }
+
+    .header {
+        padding-top: 40px;
+    }
+
+    .header .title {
+        width: 126px;
+    }
+
+    .header .gnav ul {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    .header .gnav ul li {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    .header .gnav ul li:not(:last-child) {
+        margin-right: 40px;
+    }
+
+    .header .gnav ul li .primaryBtn {
+        display: inline-block;
+        padding: 16px 32px;
+        border-radius: 4em;
+        background-color: #e6011a;
+        color: #ffffff;
+    }
+
+    .header .menu {
+        display: none;
+    }
+
+    .mvContents {
+        display: flex;
+        align-items: center;
+    }
+
+    .mvContents .mvClip {
+        width: 640px;
+    }
+
+    .mvContents .mvTxt {
+        width: 560px;
+    }
+
+    .mvContents .mvTxt .mvCopy {
+        margin-bottom: 32px;
+        font-size: 80px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .mvContents .mvTxt .mvDesc {
+        font-size: 18px;
+        line-height: 2;
+    }
+
+    .mvContents .mvTxt .mvDesc .spBr {
+        display: none;
+    }
+
+    #canvasBox {
+        width: 640px;
+        height: 640px;
+    }
+}
+
+@media (max-width: 750px) {
+    .wrap {
+        padding: 0 4%;
+    }
+
+    .header .wrap {
+        height: 64px;
+    }
+
+    .header .title {
+        width: 100px;
+    }
+
+    .header .gnav {
+        display: none;
+    }
+
+    .header .menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 8px;
+        border: 0;
+        background-color: transparent;
+    }
+
+    .menuBar {
+        display: block;
+        position: relative;
+        width: 32px;
+        height: 22px;
+    }
+
+    .menuBar .menuTxt {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        overflow: hidden;
+        width: 100%;
+        height: 2px;
+        background-color: #e6011a;
+        text-indent: 100%;
+        white-space: nowrap;
+    }
+
+    .menuBar::before,
+    .menuBar::after {
+        display: block;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #e6011a;
+    }
+
+    .menuBar::before {
+        top: 0;
+    }
+
+    .menuBar::after {
+        bottom: 0;
+    }
+
+    .mvContents {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .mvContents .mvClip {
+        width: 92%;
+        max-width: 340px;
+        margin: auto;
+    }
+
+    .mvContents .mvTxt {
+        text-align: center;
+    }
+
+    .mvContents .mvTxt .mvCopy {
+        margin-bottom: 16px;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .mvContents .mvTxt .mvDesc {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    #canvasBox {
+        position: relative; 
+        overflow: hidden;
+        padding-top: 100%;
+        margin: auto;
+        width: 100%;
+    }
+
+    #canvasBox #canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
