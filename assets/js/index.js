@@ -28,7 +28,7 @@ function init() {
 
     let camera;
     const loader = new THREE.GLTFLoader();
-    loader.load("/assets/glb/smartphone.glb", (gltf) => {
+    loader.load("assets/glb/smartphone.glb", (gltf) => {
         const model = gltf.scene;
         model.traverse((obj) => {
             if (obj.isMesh) {
