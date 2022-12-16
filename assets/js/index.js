@@ -23,12 +23,12 @@ function init() {
     const scene = new THREE.Scene();
 
     const roomEnviroment = new THREE.RoomEnvironment();
-    scene.background = null;
     scene.environment = pmremGenerator.fromScene(roomEnviroment, 0.04).texture;
 
     let camera;
     const loader = new THREE.GLTFLoader();
-    loader.load("assets/glb/smartphone.glb", (gltf) => {
+
+    loader.load('assets/glb/smartphone.glb', (gltf) => {
         const model = gltf.scene;
         model.traverse((obj) => {
             if (obj.isMesh) {
@@ -40,6 +40,8 @@ function init() {
         camera = gltf.cameras[0];
         render();
     });
+    renderer.gammaOutput = true;
+    renderer.gammaFactor = 2.2;
 
     const mouse = new THREE.Vector2();
     const windowHalf = new THREE.Vector2(
@@ -47,7 +49,7 @@ function init() {
         windowH / 2
     );
 
-    window.addEventListener("mousemove", (event) => {
+    window.addEventListener('mousemove', (event) => {
         mouse.x = (event.clientX - windowHalf.x) / windowHalf.x;
         mouse.y = (event.clientY - windowHalf.y) / windowHalf.y;
         scene.traverse((obj) => {
@@ -58,8 +60,8 @@ function init() {
         });
     });
 
-    const render = () => {
+    function render() {
         requestAnimationFrame(render);
         renderer.render(scene, camera);
-    };
+    }
 }
