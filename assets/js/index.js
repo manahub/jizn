@@ -19,6 +19,8 @@ function init() {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
+    window.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
     const pmremGenerator = new THREE.PMREMGenerator(renderer);
     const scene = new THREE.Scene();
 
@@ -27,19 +29,21 @@ function init() {
 
     let camera;
     const loader = new THREE.GLTFLoader();
+    const url = 'assets/glb/smartphone.glb';
 
-    loader.load('assets/glb/smartphone.glb', (gltf) => {
-        const model = gltf.scene;
-        model.traverse((obj) => {
-            if (obj.isMesh) {
-                obj.receiveShadow = true;
-                obj.castShadow = true;
-            }
-        });
-        scene.add(model);
-        camera = gltf.cameras[0];
-        render();
-    });
+    let model = null;
+    loader.load(
+        url,
+        function (gltf) {
+            model = gltf.scene;
+            scene.add(model);
+            camera = gltf.cameras[0];
+            render();
+        },
+        undefined, function (e) {
+            console.log(e);
+        }
+    );
     renderer.gammaOutput = true;
     renderer.gammaFactor = 2.2;
 
@@ -49,16 +53,16 @@ function init() {
         windowH / 2
     );
 
-    window.addEventListener('mousemove', (event) => {
+    function onDocumentMouseMove( event ) {
         mouse.x = (event.clientX - windowHalf.x) / windowHalf.x;
         mouse.y = (event.clientY - windowHalf.y) / windowHalf.y;
-        scene.traverse((obj) => {
+        scene.traverse(function(obj) {
             if (obj.isMesh) {
                 obj.rotation.y = mouse.x / 2;
                 obj.rotation.x = mouse.y / 2;
             }
         });
-    });
+    }
 
     function render() {
         requestAnimationFrame(render);
